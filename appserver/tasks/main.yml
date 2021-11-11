@@ -8,6 +8,12 @@
     state: directory
   tags: structure
   become: yes
+- name: delete the old app in "{{ apppath }}" directory
+  file:
+    path: "{{ apppath }}"/{{ apptarget }}"
+    state: absent
+  tags: app
+  become: yes
 - name: fetch the app container to temp folder from source
   get_url:
     url: "{{ appsource }}"
