@@ -10,7 +10,7 @@
   become: yes
 - name: delete the old app in "{{ apppath }}" directory
   file:
-    path: "{{ apppath }}"/{{ apptarget }}"
+    path: "{{ apppath }}/{{ apptarget }}"
     state: absent
   tags: app
   become: yes
