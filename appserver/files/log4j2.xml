@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Appenders>
+        <RollingFile name="LogToRollingFile" fileName="logs/app.log"
+                    filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <TimeBasedTriggeringPolicy />
+            <SizeBasedTriggeringPolicy size="10 MB"/>
+        </Policies>
+    </RollingFile>
+    
+    <RollingFile name="LogToRollingFileError" fileName="logs/error.log"
+                    filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <TimeBasedTriggeringPolicy />
+            <SizeBasedTriggeringPolicy size="10 MB"/>
+        </Policies>
+    </RollingFile>
+    
+    <RollingFile name="LogToRollingFileAudit" fileName="logs/audit.log"
+                    filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <TimeBasedTriggeringPolicy />
+            <SizeBasedTriggeringPolicy size="10 MB"/>
+        </Policies>
+    </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <!-- avoid duplicated logs with additivity=false -->
+        <Logger name="audit" level="all" additivity="true">
+            <AppenderRef ref="LogToRollingFileAudit"/>
+        </Logger>
+        <Logger name="error" level="all" additivity="true">
+            <AppenderRef ref="LogToRollingFileError"/>
+        </Logger>
+        <Root level="trace" additivity="true">
+            <AppenderRef ref="LogToRollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

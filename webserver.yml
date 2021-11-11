@@ -2,6 +2,8 @@
   become: yes
   vars:
     apppath: "/home/pi/app"
+    appsource: "https://www.boxwork.eu/maven/test/example-webservive-0.0.1.jar"
+    apptarget: "webservice.jar"
   roles:
     - common
     - appserver
