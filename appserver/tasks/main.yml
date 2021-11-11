@@ -19,7 +19,7 @@
     src: "{{ item }}"
     dest: "{{ apppath }}"
   with_items:
-    ["start.sh","log4j.xml"]
+    ["start.sh","log4j2.xml"]
   tags: app
 - name: copy 'webservices.service' to '/etc/systemd/system/'
   copy:
