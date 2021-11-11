@@ -15,10 +15,10 @@
   become: yes
   tags: app
 - name: copy files to root of webservice
-  copy: {{ item }} dest="{{ apppath }}"
+  copy: "{{ item }}" dest="{{ apppath }}"
   with_items:
-    - start.sh
-    - log4j.xml
+    - "start.sh"
+    - "log4j.xml"
   tags: app
 - name: copy 'webservices.service' to '/etc/systemd/system/'
   copy:
