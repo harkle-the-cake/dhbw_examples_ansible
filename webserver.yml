@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    apppath: "/home/pi/app"
+  roles:
+    - common
+    - appserver

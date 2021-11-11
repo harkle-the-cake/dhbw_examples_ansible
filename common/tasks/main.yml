@@ -1,0 +1,30 @@
+---
+#- include_tasks: update.yml
+- block:
+    - name: Update APT package cache
+      apt: update_cache=yes cache_valid_time=600
+      tags: os   
+      become: yes
+    - name: Upgrade APT to the latest packages
+      apt: upgrade=dist
+      tags: os   
+      become: yes
+  rescue:
+    - name: update release information
+#      shell: apt-get update --allow-releaseinfo-change
+      shell: apt-get update --allow-releaseinfo-change
+      become: yes
+      tags: os
+#- import_tasks: folders.yml
+- name: clear tmp directory
+  file:
+    path: /tmp/deploy
+    state: absent
+  tags: structure
+  become: yes 
+- name: create temp directory
+  file:
+    path: /tmp/deploy
+    state: directory
+  tags: structure
+  become: yes 
