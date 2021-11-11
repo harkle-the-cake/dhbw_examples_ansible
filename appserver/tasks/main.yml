@@ -16,7 +16,7 @@
   tags: app
 - name: copy files to root of webservice
   copy:
-    source: "./{{ item }}"
+    src: "{{ item }}"
     dest: "{{ apppath }}"
   with_items:
     ["start.sh","log4j.xml"]
