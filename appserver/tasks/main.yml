@@ -2,7 +2,7 @@
   apt: name=default-jre state=latest
   become: yes
   tags: programs
-- name: create app {{ apppath }} directory
+- name: create app "{{ apppath }}" directory
   file:
     path: "{{ apppath }}"
     state: directory
@@ -11,14 +11,15 @@
 - name: fetch the app container to temp folder from source
   get_url:
     url: "{{ appsource} }"
-    dest: "{{ apppath }}/{{ apptarget} }"
+    dest: "{{ apppath }}/{{ apptarget } }"
   become: yes
   tags: app
 - name: copy files to root of webservice
-  copy: "{{ item }}" dest="{{ apppath }}"
+  copy:
+    source: "{{ item }}"
+    dest: "{{ apppath }}"
   with_items:
-    - "start.sh"
-    - "log4j.xml"
+    ["start.sh","log4j.xml"]
   tags: app
 - name: copy 'webservices.service' to '/etc/systemd/system/'
   copy:
