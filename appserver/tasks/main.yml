@@ -10,8 +10,8 @@
   become: yes
 - name: fetch the app container to temp folder from source
   get_url:
-    url: "{{ appsource} }"
-    dest: "{{ apppath }}/{{ apptarget } }"
+    url: "{{ appsource }}"
+    dest: "{{ apppath }}/{{ apptarget }}"
   become: yes
   tags: app
 - name: copy files to root of webservice
