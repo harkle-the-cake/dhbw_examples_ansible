@@ -9,25 +9,25 @@
   tags: structure
   become: yes
 - name: fetch the app container to temp folder from source
-    get_url:
-      url: "{{ appsource} }"
-      dest: "{{ apppath }}/{{ apptarget} }"
-    become: yes
-    tags: app
+  get_url:
+    url: "{{ appsource} }"
+    dest: "{{ apppath }}/{{ apptarget} }"
+  become: yes
+  tags: app
 - name: copy files to root of webservice
-    copy: {{ item }} dest="{{ apppath }}"
-    with_items:
-      - start.sh
-      - log4j.xml
-    tags: app
+  copy: {{ item }} dest="{{ apppath }}"
+  with_items:
+    - start.sh
+    - log4j.xml
+  tags: app
 - name: copy 'webservices.service' to '/etc/systemd/system/'
-    copy:
-      src: webservices.service
-      dest: /etc/systemd/system/
-    tags: app
+  copy:
+    src: webservices.service
+    dest: /etc/systemd/system/
+  tags: app
 - name: Start webservices as service
-    service:
-      name: webservices
-      state: restarted
-    become: yes
-    tags: app
+  service:
+    name: webservices
+    state: restarted
+  become: yes
+  tags: app
