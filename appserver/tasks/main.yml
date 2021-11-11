@@ -1,5 +1,4 @@
-tasks:
-  - name: ensure java is at the latest version
-    apt: name=default-jre state=latest
-    become: yes
-    tags: programs
+- name: ensure java is at the latest version
+  apt: name=default-jre state=latest
+  become: yes
+  tags: programs
